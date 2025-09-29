@@ -1,7 +1,10 @@
 package com.example.umc9th.domain.test;
 
 import com.example.umc9th.global.apiPayload.ApiResponse;
+import com.example.umc9th.global.apiPayload.code.BaseErrorCode;
+import com.example.umc9th.global.apiPayload.code.GeneralErrorCode;
 import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
+import com.example.umc9th.global.apiPayload.exception.GeneralException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
@@ -26,5 +29,15 @@ public class TestController {
         return ResponseEntity.ok(
                 ApiResponse.onSuccess(GeneralSuccessCode.OK, "Hello World")
         );
+    }
+
+    @GetMapping("/exception")
+    @Operation(
+            summary = "예외 테스트하는 API",
+            description = "예외를 터뜨립니다"
+    )
+    public String exception() {
+        BaseErrorCode code = GeneralErrorCode.BAD_REQUEST_400;
+        throw new GeneralException(code);
     }
 }
