@@ -7,7 +7,6 @@ import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
 import com.example.umc9th.global.apiPayload.exception.GeneralException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,10 +24,8 @@ public class TestController {
         return "Hello World";
     }*/
 
-    public ResponseEntity<ApiResponse<String>> test() {
-        return ResponseEntity.ok(
-                ApiResponse.onSuccess(GeneralSuccessCode.OK, "Hello World")
-        );
+    public ApiResponse<String> test() {
+        return ApiResponse.onSuccess(GeneralSuccessCode.OK, "Hello World");
     }
 
     @GetMapping("/exception")
