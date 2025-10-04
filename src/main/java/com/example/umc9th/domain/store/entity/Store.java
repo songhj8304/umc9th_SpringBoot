@@ -26,4 +26,8 @@ public class Store extends BaseEntity {
 
     @Column(name = "address", nullable = false)
     private String address;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id", nullable = false)
+    private Location location;
 }

@@ -22,4 +22,8 @@ public class ReviewPhoto extends BaseEntity {
 
     @Column(name = "photo_url", length = 300)
     private String photoUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "review_id", nullable = false)
+    private Review review;
 }

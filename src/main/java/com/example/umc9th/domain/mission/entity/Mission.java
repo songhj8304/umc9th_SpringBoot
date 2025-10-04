@@ -1,9 +1,9 @@
 package com.example.umc9th.domain.mission.entity;
 
+import com.example.umc9th.domain.store.entity.Store;
 import com.example.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import org.apache.catalina.Store;
 
 import java.time.LocalDate;
 
@@ -30,5 +30,8 @@ public class Mission extends BaseEntity {
     @Column(name = "point", nullable = false)
     private Integer point = 0;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id", nullable = false)
+    private Store store;
 
 }
