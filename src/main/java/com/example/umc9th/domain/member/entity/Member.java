@@ -1,10 +1,10 @@
-package com.example.umc9th.domain.user.entity;
+package com.example.umc9th.domain.member.entity;
 
-import com.example.umc9th.domain.food.entity.UserFood;
-import com.example.umc9th.domain.user.enums.Gender;
-import com.example.umc9th.domain.mission.entity.UserMission;
+import com.example.umc9th.domain.food.entity.MemberFood;
+import com.example.umc9th.domain.member.enums.Gender;
+import com.example.umc9th.domain.term.entity.MemberTerm;
+import com.example.umc9th.domain.mission.entity.MemberMission;
 import com.example.umc9th.domain.review.entity.Review;
-import com.example.umc9th.domain.term.entity.UserTerm;
 import com.example.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,8 +18,8 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name = "user")
-public class User extends BaseEntity {
+@Table(name = "member")
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,13 +49,13 @@ public class User extends BaseEntity {
 
     @Builder.Default
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<UserFood> favoriteFoods = new ArrayList<>();
+    private List<MemberFood> favoriteFoods = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<UserTerm> terms = new ArrayList<>();
+    private List<MemberTerm> terms = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<UserMission> missions = new ArrayList<>();
+    private List<MemberMission> missions = new ArrayList<>();
 }
