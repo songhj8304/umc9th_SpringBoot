@@ -22,4 +22,13 @@ public class ReviewController {
     ){
         return reviewQueryService.searchReview(query, type);
     }
+
+    @GetMapping("/reviews/my")
+    public List<Review> findMyReview(
+            @RequestParam Long memberId,
+            @RequestParam(required = false) String storeName,
+            @RequestParam(required = false) Integer starRange
+    ){
+        return reviewQueryService.findMyReviews(memberId, storeName, starRange);
+    }
 }

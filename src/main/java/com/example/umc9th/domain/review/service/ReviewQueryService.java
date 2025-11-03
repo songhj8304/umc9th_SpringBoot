@@ -39,4 +39,25 @@ public class ReviewQueryService {
 
         return reviewRepository.searchReview(builder);
     }
+
+    public List<Review> findMyReviews(Long memberId, String storeName, Integer starRange) {
+
+        QReview review = QReview.review;
+
+        BooleanBuilder builder = new BooleanBuilder();
+
+        builder.and(review.member.id.eq(memberId));
+
+        // 가게명 필터
+        if (storeName != null) {
+            builder.and(review.store.name.eq(storeName));
+        }
+
+        // 별점 필터
+        if (starRange != null) {
+            builder.and(review.star.goe(starRange).and(review.star.lt(starRange + 1.0)));
+        }
+
+        return reviewRepository.findMyReviews(builder);
+    }
 }

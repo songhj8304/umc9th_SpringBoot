@@ -32,4 +32,17 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl{
                 .where(predicate)
                 .fetch();
     }
+
+    @Override
+    public List<Review> findMyReviews(Predicate predicate) {
+        QReview review = QReview.review;
+        QStore store = QStore.store;
+
+        return queryFactory
+                .selectFrom(review)
+                .leftJoin(review.store, store)
+                .where(predicate)
+                .orderBy(review.createdAt.desc())
+                .fetch();
+    }
 }
