@@ -3,10 +3,12 @@ package com.example.umc9th.domain.review.converter;
 
 import com.example.umc9th.domain.review.dto.res.ReviewResDTO;
 import com.example.umc9th.domain.review.entity.Review;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class ReviewConverter {
 
     public ReviewResDTO.ReviewDTO toReviewDTO(Review review) {
