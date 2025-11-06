@@ -4,6 +4,9 @@ package com.example.umc9th.domain.review.converter;
 import com.example.umc9th.domain.review.dto.res.ReviewResDTO;
 import com.example.umc9th.domain.review.entity.Review;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ReviewConverter {
 
     public ReviewResDTO.ReviewDTO toReviewDTO(Review review) {
@@ -15,4 +18,16 @@ public class ReviewConverter {
                 .content(review.getContent())
                 .build();
     }
+
+    public ReviewResDTO.ReviewListDTO toReviewListDTO(List<Review> reviews) {
+        List<ReviewResDTO.ReviewDTO> reviewDTOs = reviews.stream()
+                .map(this::toReviewDTO)
+                .collect(Collectors.toList());
+
+        return ReviewResDTO.ReviewListDTO.builder()
+                .reviews(reviewDTOs)
+                .totalCount(reviewDTOs.size())
+                .build();
+    }
+
 }

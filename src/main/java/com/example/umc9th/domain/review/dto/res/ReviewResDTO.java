@@ -3,6 +3,8 @@ package com.example.umc9th.domain.review.dto.res;
 
 import lombok.Builder;
 
+import java.util.List;
+
 public class ReviewResDTO {
 
     @Builder
@@ -13,4 +15,10 @@ public class ReviewResDTO {
             Float star,
             String content
     ){}
+
+    @Builder
+    public record ReviewListDTO(
+            List<ReviewDTO> reviews,
+            int totalCount
+    ) {}
 }
